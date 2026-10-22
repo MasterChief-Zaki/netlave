@@ -1,9 +1,12 @@
 "use client";
 
 import gsap from "gsap";
-import { ReactLenis, type LenisRef } from "lenis/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ReactLenis, useLenis, type LenisRef } from "lenis/react";
 import { useEffect, useRef } from "react";
 import "lenis/dist/lenis.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function SmoothScroll() {
   const lenisRef = useRef<LenisRef>(null);
@@ -21,6 +24,11 @@ export function SmoothScroll() {
       gsap.ticker.remove(advanceLenis);
     };
   }, []);
+
+  // ScrollTrigger reads the scroll position, so update it on every Lenis scroll.
+  useLenis(() => {
+    ScrollTrigger.update();
+  });
 
   return <ReactLenis root options={{ autoRaf: false }} ref={lenisRef} />;
 }
