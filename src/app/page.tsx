@@ -1,3 +1,9 @@
+import { LazyScene } from "@/components/scene/LazyScene";
+
 export default function Home() {
-  return <main />;
+  return (
+    <main>
+      <LazyScene />
+    </main>
+  );
 }
