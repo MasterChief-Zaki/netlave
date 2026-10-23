@@ -11,6 +11,8 @@ pnpm dev
 
 Open http://localhost:3000. For the production version, run `pnpm build` followed by `pnpm start`.
 
+See [development troubleshooting](docs/development-troubleshooting.md) for Next.js root configuration, renderer compatibility, browser-extension hydration diagnostics and the landing-style glass controls.
+
 ## Checks
 
 ```bash

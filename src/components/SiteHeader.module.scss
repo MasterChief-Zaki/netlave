@@ -1,3 +1,5 @@
+@use "../styles/glass-buttons" as glass;
+
 .header {
   position: sticky;
   top: 0;
@@ -49,33 +51,14 @@
 }
 
 .headerAction {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 0.8rem 1.15rem;
-  border: 1px solid var(--color-border);
-  border-radius: 3px;
-  font-size: 0.8rem;
-  transition:
-    background 180ms,
-    border-color 180ms;
-
-  &:hover {
-    border-color: var(--color-seafoam);
-    background: var(--color-lagoon);
-  }
-
-  span {
-    color: var(--color-seafoam);
-  }
+  @include glass.primary-button;
 }
 
 .menuButton {
+  @include glass.secondary-button;
+
   display: none;
-  padding: 0.75rem 0;
-  border: 0;
-  background: none;
-  color: var(--color-moon);
+  padding-inline: 1.25rem;
 }
 
 .mobileNavigation {
