@@ -1,3 +1,5 @@
+@use "../styles/glass-buttons" as glass;
+
 .explorer {
   display: grid;
   grid-template-columns: 0.8fr 1.4fr;
@@ -8,34 +10,19 @@
 .systemButtons {
   display: grid;
   align-content: start;
+  gap: 1rem;
 
   button {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    min-height: 6.5rem;
-    padding: 1.5rem 0;
-    border: 0;
-    border-top: 1px solid var(--color-border);
-    background: none;
-    color: var(--color-text-muted);
-    text-align: left;
-    font-size: clamp(1rem, 1.8vw, 1.5rem);
-    transition:
-      color 200ms,
-      padding 200ms;
+    @include glass.secondary-button;
 
-    &:last-child {
-      border-bottom: 1px solid var(--color-border);
-    }
+    justify-content: flex-start;
+    padding-inline: 1.5rem;
+    text-align: left;
 
     &[aria-pressed="true"] {
-      padding-left: 0.75rem;
-      color: var(--color-seafoam);
-    }
-
-    &:hover {
-      color: var(--color-moon);
+      background: var(--color-primary);
+      border-color: var(--color-seafoam);
+      color: var(--color-on-primary);
     }
   }
 }
@@ -173,7 +160,6 @@
   }
 
   .systemButtons button {
-    min-height: 4.5rem;
-    padding-block: 1rem;
+    min-height: 3rem;
   }
 }
