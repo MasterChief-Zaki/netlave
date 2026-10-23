@@ -1,6 +1,24 @@
 .sceneLayer {
-  position: fixed;
+  position: absolute;
   inset: 0;
-  z-index: -1;
   pointer-events: none;
+
+  canvas {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:has(canvas) .fallback {
+    opacity: 0;
+  }
+}
+
+.fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  stroke: var(--color-teal);
+  stroke-width: 1;
+  opacity: 0.16;
 }
