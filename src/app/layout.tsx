@@ -1,21 +1,13 @@
-import type { Metadata } from "next";
+import { StructuredData } from "@/components/StructuredData";
+import { pageMetadata } from "@/lib/seo";
 import { ibmPlexMono, spaceGrotesk } from "@/styles/fonts";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import "./globals.scss";
 
-export const metadata: Metadata = {
-  title: "NetLave — A forest, before the first tree",
-  description:
-    "Explore a simulation-driven digital twin of treated-wastewater forestry in Egypt. Reclaimed water, renewable power and explainable irrigation control, built on synthetic site assumptions.",
-  openGraph: {
-    title: "NetLave — A forest, before the first tree",
-    description:
-      "Reclaimed water. Renewable power. A forest, simulated. Explore the NetLave digital twin prototype.",
-    type: "website",
-    locale: "en_US",
-    siteName: "NetLave",
-  },
-};
+export const metadata = pageMetadata(
+  "NetLave — Treated-wastewater forestry digital twin",
+  "/",
+);
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -24,6 +16,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${spaceGrotesk.variable} ${ibmPlexMono.variable}`}
     >
       <body>
+        <StructuredData />
         <SmoothScroll />
         {children}
       </body>

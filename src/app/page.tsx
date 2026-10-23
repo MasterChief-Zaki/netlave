@@ -1,4 +1,6 @@
 import { PageMotion } from "@/components/PageMotion";
+import { ProjectFacts } from "@/components/ProjectFacts";
+import truth from "@/content/ground-truth.json";
 import { ScenarioExplorer } from "@/components/ScenarioExplorer";
 import { LazyScene } from "@/components/scene/LazyScene";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -58,9 +60,7 @@ export default function Home() {
                   <span>first tree.</span>
                 </h1>
                 <p className={styles.heroDescription} data-hero-reveal>
-                  Reclaimed water. Renewable power. Explainable control. Explore
-                  a self-powered forest in simulation—before taking it into the
-                  world.
+                  {truth.description}
                 </p>
                 <div className={styles.heroActions} data-hero-reveal>
                   <a className={styles.primaryButton} href="#twin">
@@ -435,6 +435,7 @@ export default function Home() {
               </details>
             </div>
           </section>
+          <ProjectFacts />
         </main>
         <footer className={styles.footer}>
           <div className={styles.container}>

@@ -1,15 +1,7 @@
-// Content and synthetic assumptions from ../landing-netlave/src/components/Idea.tsx
-// and ../digitalTwin-netlave/README.md. These are not field measurements.
-export const siteAssumptions = {
-  forestAreaHa: 15,
-  reservoirCapacityM3: 1500,
-  initialReservoirM3: 900,
-  meanInflowM3Hour: 60,
-  solarCapacityKwp: 8,
-  batteryCapacityKwh: 15,
-  pumpLimitKw: 3,
-  hydroPowerW: 294,
-};
+import truth from "./ground-truth.json";
+
+// Static explanations of the Python reference, never frontend physics.
+export const siteAssumptions = truth.siteAssumptions;
 
 export const systems = [
   {
@@ -65,7 +57,8 @@ export const scenarios = [
     number: "01",
     title: "Three zones. One shared network.",
     description:
-      "With all zones just below the moisture trigger, A and C begin irrigation. Zone B waits because A and B share a 140 m³/h gravity manifold.",
+      truth.scenarios.find((scenario) => scenario.id === "baseline")?.summary ??
+      "",
     reason: "CONCURRENT_FLOW_LIMIT",
     reasonLabel: "Zone B waits for manifold capacity",
     tone: "warning",
@@ -80,7 +73,8 @@ export const scenarios = [
     number: "02",
     title: "A small blockage. A visible consequence.",
     description:
-      "With solids loading multiplied by eight, Zone B loses sufficient head while A runs. At clog index 0.60, a five-minute flush uses 1.5 m³ of water and 0.10 kWh, then restores service.",
+      truth.scenarios.find((scenario) => scenario.id === "clogged_filter")
+        ?.summary ?? "",
     reason: "INSUFFICIENT_HEAD",
     reasonLabel: "Zone B is denied until head recovers",
     tone: "fault",
@@ -95,7 +89,8 @@ export const scenarios = [
     number: "03",
     title: "Protect the battery. Pause the pump.",
     description:
-      "At a cloud factor of 0.25 and an initial battery charge of 24%, the uphill pump runs for about 13 minutes before reaching the reserve. Its request is then denied with zero delivered flow.",
+      truth.scenarios.find((scenario) => scenario.id === "low_solar")
+        ?.summary ?? "",
     reason: "BATTERY_BELOW_RESERVE",
     reasonLabel: "Zone C stops at the battery reserve",
     tone: "fault",
@@ -110,7 +105,8 @@ export const scenarios = [
     number: "04",
     title: "When the inlet stops, storage matters.",
     description:
-      "The preset interrupts treated-water inflow from 06:30 to 12:30. Micro-hydro falls to zero and irrigation draws down the reservoir, exposing the dependency on stored water.",
+      truth.scenarios.find((scenario) => scenario.id === "tse_interrupt")
+        ?.summary ?? "",
     reason: "RESERVOIR_LOW",
     reasonLabel: "Low-storage gate protects delivery if reached",
     tone: "warning",
@@ -122,15 +118,4 @@ export const scenarios = [
 ] as const;
 
 // Published development run: baseline, seed 7, 14 days. Not measured savings.
-export const comparison = [
-  {
-    label: "Irrigation delivered",
-    fixed: "11,404",
-    smart: "11,411",
-    unit: "m³",
-  },
-  { label: "ET deficit", fixed: "0.42", smart: "0.56", unit: "mm" },
-  { label: "Overflow / diversion", fixed: "8,245", smart: "8,139", unit: "m³" },
-  { label: "Pump energy", fixed: "360", smart: "399", unit: "kWh" },
-  { label: "Unserved electrical load", fixed: "0", smart: "0", unit: "kWh" },
-];
+export const comparison = truth.comparison;
