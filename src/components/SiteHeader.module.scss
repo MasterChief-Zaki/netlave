@@ -1,0 +1,134 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  min-height: 5.5rem;
+  padding: 0 var(--page-gutter);
+  border-bottom: 1px solid var(--color-border);
+  background: rgb(2 29 40 / 90%);
+  backdrop-filter: blur(18px);
+}
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.07em;
+
+  svg {
+    width: 1.7rem;
+    stroke: var(--color-seafoam);
+    stroke-width: 1.5;
+  }
+}
+
+.wordmarkDot {
+  margin-left: -0.6rem;
+  color: var(--color-seafoam);
+}
+
+.desktopNavigation {
+  display: flex;
+  gap: 2rem;
+
+  a {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    transition: color 180ms;
+
+    &:hover {
+      color: var(--color-seafoam);
+    }
+  }
+
+  span {
+    color: var(--color-sage);
+    font-family: var(--font-family-mono);
+    font-size: 0.65rem;
+  }
+}
+
+.headerAction {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.8rem 1.15rem;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  font-size: 0.8rem;
+  transition:
+    background 180ms,
+    border-color 180ms;
+
+  &:hover {
+    border-color: var(--color-seafoam);
+    background: var(--color-lagoon);
+  }
+
+  span {
+    color: var(--color-seafoam);
+  }
+}
+
+.menuButton {
+  display: none;
+  padding: 0.75rem 0;
+  border: 0;
+  background: none;
+  color: var(--color-moon);
+}
+
+.mobileNavigation {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: grid;
+  padding: 1rem var(--page-gutter) 2rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-midnight);
+
+  a {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+.skipLink {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 30;
+  padding: 1rem;
+  transform: translateY(-200%);
+  background: var(--color-seafoam);
+  color: var(--color-midnight);
+
+  &:focus {
+    transform: translateY(0);
+  }
+}
+
+@media (width <= 800px) {
+  .header {
+    min-height: 4.5rem;
+  }
+
+  .desktopNavigation,
+  .headerAction {
+    display: none;
+  }
+
+  .menuButton {
+    display: block;
+  }
+}
