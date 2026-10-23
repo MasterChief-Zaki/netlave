@@ -258,7 +258,7 @@ function ForestModel({
   );
 }
 
-export function Scene() {
+export function Scene({ active }: { active: boolean }) {
   const [palette] = useState(readPalette);
   const reducedMotion = useReducedMotion();
   return (
@@ -266,7 +266,7 @@ export function Scene() {
       dpr={[1, 1.5]}
       gl={{ antialias: false, alpha: true }}
       camera={{ position: [22, 19, 24], fov: 35 }}
-      frameloop={reducedMotion ? "demand" : "always"}
+      frameloop={reducedMotion || !active ? "demand" : "always"}
       fallback={<div>3D view unavailable. Explore the system below.</div>}
     >
       <ambientLight intensity={1.25} />
@@ -280,7 +280,7 @@ export function Scene() {
         intensity={2}
         color={palette.pipe}
       />
-      <ForestModel palette={palette} animate={!reducedMotion} />
+      <ForestModel palette={palette} animate={!reducedMotion && active} />
       <EffectComposer multisampling={0}>
         <SMAA />
       </EffectComposer>
