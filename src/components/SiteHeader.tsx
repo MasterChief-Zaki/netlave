@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import styles from "./SiteHeader.module.scss";
 
@@ -19,10 +20,8 @@ export function SiteHeader() {
       </a>
       <header className={styles.header}>
         <a className={styles.wordmark} href="#home" aria-label="NetLave home">
-          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <path d="M6 25V7l20 18V7M6 16l10-6 10 6M6 25l10-6 10 6" />
-          </svg>
-          NetLave<span className={styles.wordmarkDot}>.</span>
+          <Image src="/brand/mark.png" alt="" width={36} height={36} />
+          NetLave
         </a>
         <nav className={styles.desktopNavigation} aria-label="Primary">
           {navigation.map((item, index) => (

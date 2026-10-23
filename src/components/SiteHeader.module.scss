@@ -21,16 +21,9 @@
   font-weight: 600;
   letter-spacing: -0.07em;
 
-  svg {
-    width: 1.7rem;
-    stroke: var(--color-seafoam);
-    stroke-width: 1.5;
+  img {
+    border-radius: 0.25rem;
   }
-}
-
-.wordmarkDot {
-  margin-left: -0.6rem;
-  color: var(--color-seafoam);
 }
 
 .desktopNavigation {
