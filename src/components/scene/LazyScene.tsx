@@ -27,13 +27,21 @@ class SceneBoundary extends Component<
 export function LazyScene() {
   const sceneRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
+    const probe = document.createElement("canvas");
+    const context = probe.getContext("webgl2");
+    if (!context) return;
+    context.getExtension("WEBGL_lose_context")?.loseContext();
     const sceneElement = sceneRef.current;
     if (sceneElement === null) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setVisible(entry?.isIntersecting ?? false);
+        // Keep one mounted renderer after the first reveal. Scrolling across
+        // the threshold must not repeatedly allocate WebGL contexts.
+        setActive(entry?.isIntersecting ?? false);
+        if (entry?.isIntersecting) setVisible(true);
       },
       { rootMargin: "150px" },
     );
@@ -63,7 +71,7 @@ export function LazyScene() {
       </svg>
       {visible && (
         <SceneBoundary>
-          <Scene />
+          <Scene active={active} />
         </SceneBoundary>
       )}
     </div>
