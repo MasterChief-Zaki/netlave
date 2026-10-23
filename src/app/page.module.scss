@@ -1,3 +1,5 @@
+@use "../styles/glass-buttons" as glass;
+
 .container {
   max-width: var(--content-max-width);
   margin-inline: auto;
@@ -96,51 +98,11 @@
 }
 
 .primaryButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  min-height: 3.2rem;
-  padding: 1rem 1.25rem;
-  border: 1px solid var(--color-seafoam);
-  border-radius: 3px;
-  background: var(--color-seafoam);
-  color: var(--color-midnight);
-  font-size: 0.8rem;
-  font-weight: 500;
-  transition:
-    background 200ms,
-    transform 200ms;
-
-  &:hover {
-    transform: translateY(-3px);
-    background: var(--color-mist);
-  }
-
-  span {
-    font-size: 1.1rem;
-  }
+  @include glass.primary-button;
 }
 
 .textLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  padding-block: 0.65rem;
-  border-bottom: 1px solid var(--color-border);
-  font-size: 0.8rem;
-  transition:
-    color 200ms,
-    border-color 200ms;
-
-  &:hover {
-    border-color: var(--color-seafoam);
-    color: var(--color-seafoam);
-  }
-
-  span {
-    color: var(--color-seafoam);
-  }
+  @include glass.secondary-button;
 }
 
 .heroFigure {
@@ -675,18 +637,7 @@
 }
 
 .backToTop {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  padding-block: 0.75rem;
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-text-muted);
-  font-size: 0.75rem;
-
-  span {
-    color: var(--color-seafoam);
-    font-size: 1.25rem;
-  }
+  @include glass.secondary-button;
 }
 
 .footerWordmark {
